@@ -22,7 +22,7 @@
 
             try {
                 // Make the API call
-                const response = await fetch('ipl-score-prediction.azurewebsites.net/docs', {
+                const response = await fetch('https://ipl-score-prediction.azurewebsites.net/docs', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
