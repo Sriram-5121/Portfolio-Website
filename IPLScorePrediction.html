@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styling to fix overlapping issue */
+        .navbar-brand {
+            z-index: 2;
+            position: relative;
+        }
+        .main-heading {
+            margin-top: 120px; /* Adjust this value as needed */
+        }
+        .player-select {
+            height: 240px; /* Adjust height to show at least 10 players */
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+        <div class="container">
+            <!-- <a class="navbar-brand" href="#">IPL Score </a>
+            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>-->
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item"><a href="index.html#home-section" class="nav-link"><span>Home</span></a></li>
+                    <li class="nav-item"><a href="index.html#about-section" class="nav-link"><span>About</span></a></li>
+                    <li class="nav-item"><a href="index.html#resume-section" class="nav-link"><span>Resume</span></a></li>
+                    <li class="nav-item"><a href="index.html#services-section" class="nav-link"><span>Services</span></a></li>
+                    <li class="nav-item"><a href="index.html#skills-section" class="nav-link"><span>Skills</span></a></li>
+                    <li class="nav-item"><a href="index.html#projects-section" class="nav-link"><span>Projects</span></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Projects</span></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" href="IPLScorePrediction.html">IPL Score Prediction</a>
+                            <a class="dropdown-item" href="classification.html">Classification</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="index.html#blog-section" class="nav-link"><span>My Blog</span></a></li>
+                    <li class="nav-item"><a href="index.html#contact-section" class="nav-link"><span>Contact</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="ftco-section ftco-no-pb ftco-no-pt" id="regression-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center heading-section main-heading">
+                    <h2 class="mb-4">IPL Score Prediction </h2>
+                    <p>This model predicts the final score of an IPL match based on various input features. Enter the match details below to get the predicted score.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form action="#" method="post" class="appointment-form">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <select class="form-control" id="venue-select" required>
+                                        <option value="" disabled selected>Venue</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <select class="form-control" id="team-select" required>
+                                        <option value="" disabled selected>Team</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <select class="form-control" id="opponent-select" required>
+                                        <option value="" disabled selected>Opponent</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <select class="form-control" id="toss-winner-select" required>
+                                        <option value="" disabled selected>Toss Winner</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <select class="form-control" required>
+                                        <option value="" disabled selected>Toss Decision</option>
+                                        <!-- Add toss decision options here -->
+                                        <option value="bat">Bat</option>
+                                        <option value="bowl">Bowl</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Select Players (Max 11)</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="player-filter">
+                                            <option value="all">All</option>
+                                            <option value="batsman">batsman</option>
+                                            <option value="bowler">bowler</option>
+                                            <option value="all-rounder">all-rounder</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <select multiple class="form-control player-select large-select" id="available-players">
+                                                <!-- Player options will be populated here -->
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select multiple class="form-control player-select large-select" id="selected-players">
+                                                <!-- Selected players will appear here -->
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center mt-3">
+                                        <button type="button" id="add-player" class="btn btn-primary">Add Player</button>
+                                        <button type="button" id="remove-player" class="btn btn-danger">Remove Player</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <div class="form-group">
+                                    <input type="submit" value="Predict Score" class="btn btn-primary py-3 px-5">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div id="predicted-score" class="col-md-12 text-center" style="display: none;">
+                    <h3>Predicted Score: <span id="score-value"></span></h3>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Feedback" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <a href="https://github.com/your-repo" class="btn btn-secondary">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/venues.js"></script>
+    <script src="js/teams.js"></script>
+    <script src="js/players.js"></script>
+    <script src="js/prediction.js"></script>
+</body>
+</html>
