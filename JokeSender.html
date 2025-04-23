@@ -1,78 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Joke Sender - UiPath Automation</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css"> <!-- reuse your existing style.css -->
-  </head>
-  <body>
+<head>
+  <title>Joke Sender - UiPath Job Trigger</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-    <section class="ftco-section">
-      <div class="container text-center">
-        <h1 class="mb-4">Joke Sender Bot</h1>
-        <p class="lead">An RPA bot that sends random jokes to your number or chat app using UiPath + Orchestrator API.</p>
+<section class="ftco-section">
+  <div class="container text-center">
+    <h1 class="mb-4">Joke Sender Bot 🤖</h1>
+    <p class="lead">Click the button to trigger your UiPath Job from this webpage!</p>
 
-        <button onclick="runUiPathJob()" class="btn btn-primary py-3 px-5">▶ Run Joke Sender</button>
-        <p id="job-status" style="margin-top: 20px; font-weight: bold;"></p>
-      </div>
-    </section>
+    <button onclick="runUiPathJob()" class="btn btn-primary py-3 px-5">▶ Run Joke Sender</button>
+    <p id="job-status" style="margin-top: 20px; font-weight: bold;"></p>
+  </div>
+</section>
 
-    <script>
-      async function runUiPathJob() {
-        const statusElem = document.getElementById("job-status");
-        statusElem.innerText = "⏳ Triggering job...";
+<script>
+  async function runUiPathJob() {
+    const statusElem = document.getElementById("job-status");
+    statusElem.innerText = "⏳ Triggering UiPath Job...";
 
-        const orchestratorUrl = "https://cloud.uipath.com";
-        const accountLogicalName = "sidcgllzzp";
-        const tenantLogicalName = "DefaultTenant";
-        const folderId = "6241209"; // optional for classic folders
-        const processReleaseKey = "1472793"; 
-        const patToken = "rt_5049F4739CF09236D6808ED8B1B3172569DD4ED6484ADCE00D16AF1474BAB2F0-1";
+    try {
+      const response = await fetch("https://jokesenderapi-gtdahsbjbvgrg7gz.centralindia-01.azurewebsites.net/trigger-job", {
+        method: "POST"
+      });
 
-        try {
-          const authResponse = await fetch(`${orchestratorUrl}/identity_/connect/token`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `grant_type=refresh_token&client_id=external&refresh_token=${patToken}`
-          });
+      const data = await response.json();
+      console.log("Job Response:", data);
 
-          const authData = await authResponse.json();
-          const accessToken = authData.access_token;
-
-          const jobResponse = await fetch(`${orchestratorUrl}/odata/Jobs/UiPath.Server.Configuration.OData.StartJobs`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${accessToken}`,
-              "X-UIPATH-TenantName": tenantLogicalName
-            },
-            body: JSON.stringify({
-              startInfo: {
-                ReleaseKey: processReleaseKey,
-                Strategy: "ModernJobsCount",
-                JobsCount: 1,
-                RuntimeType: "Unattended",
-                FolderId: folderId
-              }
-            })
-          });
-
-          const jobData = await jobResponse.json();
-
-          if (jobResponse.ok) {
-            statusElem.innerText = "✅ UiPath Job started successfully!";
-          } else {
-            statusElem.innerText = `❌ Failed: ${jobData.message || 'Unknown error'}`;
-          }
-        } catch (err) {
-          console.error(err);
-          statusElem.innerText = "❌ Error connecting to Orchestrator.";
-        }
+      if (response.ok) {
+        statusElem.innerText = "✅ UiPath Job started successfully!";
+      } else {
+        statusElem.innerText = `❌ Failed: ${data.message || 'Unknown error'}`;
       }
-    </script>
-  </body>
+    } catch (error) {
+      console.error(error);
+      statusElem.innerText = "❌ Error occurred while triggering job.";
+    }
+  }
+</script>
+
+</body>
 </html>
