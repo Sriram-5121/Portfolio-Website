@@ -98,7 +98,7 @@
       formData.append("file", fileInput.files[0]);
 
       try {
-        const response = await fetch("poduparser-edb7dygte6b4a0aq.southeastasia-01.azurewebsites.net/process", {
+        const response = await fetch("https://poduparser-edb7dygte6b4a0aq.southeastasia-01.azurewebsites.net/process", {
           method: "POST",
           body: formData
         });
